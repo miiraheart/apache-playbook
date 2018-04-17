@@ -1,1 +1,10 @@
-main.yml
+---
+- name: check if apache is installed
+  yum: pkg=httpd state=latest
+- name: check if apache is running
+  service: name=httpd state=running enabled=yes
+- name: copy files to DocumentRoot
+  copy: src=redhat.png dest=/var/www/html/redhat.png
+- name: copy application code to document root
+  template: src=index.html.j2 dest=/var/www/html/index.html
+  notify: restart apache
