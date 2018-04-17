@@ -1,0 +1,5 @@
+- name: install and configure apache on vm
+remote_user: user
+sudo: yes
+roles:
+   - webserver
